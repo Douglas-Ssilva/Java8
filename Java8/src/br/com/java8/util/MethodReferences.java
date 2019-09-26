@@ -38,6 +38,7 @@ public class MethodReferences {
 		list.forEach(System.out::println);
 		list.forEach(s -> System.out.println(s)); //lamba
 		
+		
 
 	}
 
