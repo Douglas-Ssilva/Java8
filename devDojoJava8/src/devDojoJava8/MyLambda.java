@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 
 import devDojoJava8.interfaces.PredicateCar;
@@ -45,8 +46,15 @@ public class MyLambda {
 		new Thread(runnable).start();
 		
 		forEach(Arrays.asList(1,2,3,4), (Integer i) -> System.out.println(i));
-		List<Integer> size = getSize(Arrays.asList("Douglas", "Inez", "Geraldo", "Igor"), (String s) -> s.length());
+		List<Integer> size = getList(Arrays.asList("Douglas", "Inez", "Geraldo", "Igor"), (String s) -> s.length());
 		System.out.println(size);
+		
+		List<Car> list = Arrays.asList(new Car("White", 2010), new Car("Black", 2000), new Car("Green", 2011));
+		List<Integer> list2 = getList(list, (Car c) -> c.getAno());
+		System.out.println(list2);
+		
+		IntPredicate intPredicate= (int i) -> i % 2 == 0;
+		System.out.println(intPredicate.test(2));
 	}
 	
 	public static <T> void forEach(List<T> list, Consumer<T> c){
@@ -55,7 +63,7 @@ public class MyLambda {
 		}
 	}
 	
-	public static <T, R> List<R> getSize(List<T> list, Function<T, R> function){
+	public static <T, R> List<R> getList(List<T> list, Function<T, R> function){
 		List<R> listTemp= new ArrayList<>();
 		for (T t : list) {
 			listTemp.add(function.apply(t));

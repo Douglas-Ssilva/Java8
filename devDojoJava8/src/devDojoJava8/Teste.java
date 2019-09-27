@@ -3,8 +3,10 @@ package devDojoJava8;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import devDojoJava8.interfaces.PredicateCar;
@@ -26,6 +28,7 @@ public class Teste { // Unica coisa que muda entre esses metodos é o IF, com par
 				return t.getAno() > 2010;
 			}
 		}));
+		
 
 	}
 

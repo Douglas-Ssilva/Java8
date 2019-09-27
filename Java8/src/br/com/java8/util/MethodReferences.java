@@ -5,10 +5,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 
+import javax.swing.JOptionPane;
+
 public class MethodReferences {
 
 	public static void main(String[] args) {
 		
+		List<String> list3 = new ArrayList<>();
 		List<String> list = new ArrayList<>();
 		list.add("DevMedia");
 		list.add("DevDojo");
@@ -26,6 +29,11 @@ public class MethodReferences {
 		Comparator<String> comparator= Comparator.comparing(function);
 		list.sort(comparator);
 		
+		list.forEach(name -> { if (!list3.contains(name)) list3.add(name);
+			System.out.println(name);
+		});
+		JOptionPane.showMessageDialog(null, list3.size());
+		
 		
 		list.sort(Comparator.comparing(s -> s.length()));
 		list.sort(Comparator.comparing(String::length)); //Sintaxes equivalentes. É avaliado também como um lamba
@@ -38,8 +46,6 @@ public class MethodReferences {
 		list.forEach(System.out::println);
 		list.forEach(s -> System.out.println(s)); //lamba
 		
-		
-
 	}
 
 }
