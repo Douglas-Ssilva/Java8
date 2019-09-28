@@ -29,7 +29,9 @@ public class MethodReferences {
 		Comparator<String> comparator= Comparator.comparing(function);
 		list.sort(comparator);
 		
-		list.forEach(name -> { if (!list3.contains(name)) list3.add(name);
+		list.forEach(name -> {
+			if (!list3.contains(name))
+				list3.add(name);
 			System.out.println(name);
 		});
 		JOptionPane.showMessageDialog(null, list3.size());
