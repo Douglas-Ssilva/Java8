@@ -3,9 +3,9 @@ package br.com.java8.model;
 public class Person {
 
 	private String name;
-	private byte idade;
+	private int idade;
 	
-	public Person(String name, byte idade) {
+	public Person(String name, int idade) {
 		this.name = name;
 		this.idade = idade;
 	}
@@ -18,11 +18,11 @@ public class Person {
 		this.name = name;
 	}
 
-	public byte getIdade() {
+	public int getIdade() {
 		return idade;
 	}
 
-	public void setIdade(byte idade) {
+	public void setIdade(int idade) {
 		this.idade = idade;
 	}
 
