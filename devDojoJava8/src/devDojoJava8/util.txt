@@ -1,0 +1,2 @@
+Não é recomendado usar o Optional em atributos uma vez que ele não implementa o Serializable.
+No Hibernate por exemplo teriamos problemas

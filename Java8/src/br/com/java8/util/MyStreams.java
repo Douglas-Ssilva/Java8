@@ -1,6 +1,8 @@
 package br.com.java8.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -53,7 +55,12 @@ public class MyStreams {
 		list.stream().filter(c -> c.getIdade() > 20).collect(Collectors.toMap(c -> c.getName(), c -> c.getIdade())).
 		forEach((nome, idade) -> System.out.println(nome + " tem " + idade + " anos" ));
 		
+		List<Integer> numbers3= new LinkedList<>();
+		List<Integer> numbers2= Arrays.asList(30,152);
+		List<Integer> numbers = list.stream().map(Person::getIdade).collect(Collectors.toList());
+		System.out.println(numbers);
 		
+		//numbers.stream().filter(numero -> numero.equals(numbers2.forEach(item -> item))).mapToInt(mapper);
 		
 		
 		
