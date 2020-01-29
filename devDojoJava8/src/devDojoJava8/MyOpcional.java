@@ -64,6 +64,14 @@ public class MyOpcional {
 		
 	}
 	
+	//usando filtros
+	public static String obterNomeSeguradoraIdade(Motorista pessoa, int idadeMinima) {
+		return Optional.ofNullable(pessoa).filter(p -> p.getIdade() > idadeMinima)
+				.flatMap(Motorista::getCaminhao)
+				.flatMap(Caminhao::getSeguro)
+				.map(Seguro::getCobertura).orElse("Não existe seguro");
+	}
+	
 	public static void verificarNomesIguais(String nome) {
 		Optional.ofNullable(nome).filter(n -> n.equals("DevDojo")).ifPresent(x -> System.out.print("Nomes iguais"));
 	}
@@ -76,7 +84,5 @@ public class MyOpcional {
 //	public static Optional<Caminhao> getCaminhao(Motorista motorista){
 //		return Optional.ofNullable(motorista.getCaminhao());
 //	}
-//	
 	
-//	Aula 184
 }
