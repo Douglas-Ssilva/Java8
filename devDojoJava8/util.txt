@@ -1,0 +1,16 @@
+Não é recomendado usar o Optional em atributos uma vez que ele não implementa o Serializable.
+No Hibernate por exemplo teriamos problemas
+
+Streams(sequencia de elementos que suportam PROCESSAMENTO de dados) -> podemos expressar como se fosse uma query, trabalha de forma paralela.
+Collection guardamos os dados. Streams processamos e computamos os dados, transformar os dados em alguma coisa.
+
+Função pipeline - é o retorno do proprio Stream, assim podemos encadear métodos
+
+Métodos intermidiate(return other Stream) e terminal(return tudo que é diferente de Stream. Ex: List, Double)
+
+Só podemos operar o Stream apenas uma vez, pois quando chamamos uma operação do tipo terminal o stream já foi consumido
+
+Teste Files
+FileTxt
+FileInput
+Input
