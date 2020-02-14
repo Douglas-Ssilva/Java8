@@ -15,5 +15,30 @@ FileTxt
 FileInput
 Input
 
-Parallel Streams -> podemos usar as Threads p melhorar performance, porém não são todos casos que podemos usar.
-
+- Parallel Streams -> podemos usar as Threads p melhorar performance, porém não são todos casos que podemos usar.
+- Streams paralelos nem sempre são mais rapidos que os sequencias, por isso devemos fazer testes e ver qual
+obtem melhor performance
+- Quando usarmos Streams, verificar sempre se o boxing e unboxing estão sendo usados, pois com grande quantidade
+de valores, pode afetar a performance
+- Algumas operações paralelas são mais lentas que as sequenciais, visto que precisa que os elementos estejam 
+ordenados. Ex: findFirst, e limit. Já o findAny é mais rápido
+- Normalmente quando temos grande processamento, o uso de paralelismo é o mais adequado
+- Quantidade de dados pequena, sempre usar stream sequencial
+- Pra algumas coleções o uso de paralelismo não é muito indicado, vide figura
+- Verificar sempre tamanho do Stream, quando temos um de tamanho definido, fica mais facil de processar em partes.
+	Porém as operações que iremos fazer pode influenciar e não termos o resultado esperado
+- Processamento do merge deve ser levado em consideração, pois no final depois de dividir uma tarefa em varias
+	menores, de forma recursiva, o join dessas pequenas tarefas pode ser custoso.
+Streams paralelos usam o ForkJoin, e este funciona assim(merge dos resultados as vezes demora muito):
+	
+	if(tarefa for pequena ou nao pode ser dividida){
+		faz ela sequencial
+	} else {
+		dividir em duas tarefas
+		chamar metodo recursivamente	
+		esperar todas tarefas serem completadas
+		combinar todos resultados
+	}
+		
+		
+		 
