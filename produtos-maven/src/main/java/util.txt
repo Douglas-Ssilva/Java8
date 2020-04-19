@@ -1,0 +1,79 @@
+mvn compile- compila os arquivos source
+mvn -o compile- não faz a verificação se há novas versões dos goals que uso.
+mvn test- executa os testes
+mvn package- gera o .jar ou .war
+mvn clean- limpa o diretorio target, dos arquivos compilados
+mvn install- faz a instalação dos projetos locais no projeto destino
+
+Quando formos executar o package sempre rodar o clean p não deixar lixo
+
+Em projetos .jar, para executar: 
+depois de passar por todas essas fases: 
+java -cp nomeDoJar nomeDaClassMain executar
+
+.m2/repository - repositório local, se localiza na pasta do user.
+
+Ciclo de vida de build: 
+1. Validação: verificamos se projeto possui todas as informações necessárias
+2. Compilação: compilar os conteúdos
+3. Teste: realizar testes diferentes no projeto
+4. Pacote: geração de um pacote do projeto 
+5. Teste de integração: realizar testes de integração
+6. Verificação: checagem do pacote gerado 
+7. Instalação: realizar a instalação do pacote no repositório local 
+8. Implantação: realizar a implantação no ambiente adequado
+
+Há vários plugins pra se usar com maven. Ex: 
+O PMD é um analisador de código-fonte. Esse goal falha o build se existir alguma violação das regras do PMD no código-fonte.
+Com o PMD é possível inserir várias regras, assim não deixo os desenv entregarem código 'sujo'
+mvn pmd:pmd no console, plugin p gerar relatório do codigo fonte
+relatório é gerado no target
+
+pmd:check - no build fala se cumpri ou nao as regras.  É executado na fase de verify
+
+
+Configurando um goal de um plugin no projeto a fim de ser executado sempre: 
+<build>
+    <!-- Configurando plugin p ser executado no projeto -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.13.0</version>
+        <executions>
+            <execution>
+                <phase>verify</phase>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+            </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
+Mais um plugin de teste: 
+plugin jacoco não conseguiu gerar o relatorio
+
+Outro plugin é o do jetty, que é um servidor.
+
+
+		<!-- Usando meu .jar como dependencia de outro projeto -->
+		<dependency>
+			<groupId>br.com.alura.maven</groupId>
+			<artifactId>projeto-maven-jar</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		
+Devemos fazer o install(instalar esse projeto no nosso diretorio local) do projeto que será usado como dependencia
+
+Escopo das dependencias
+- compile: Significa que a dependência estará em todos os classpaths: de compilação, teste e execução.
+	Esse é o escopo padrão utilizado quando não declaramos um escopo na dependência.
+- test: não são passados p frente, ou seja, quando geramos o .war ou .jar (desenv)
+- provided: Significa que a dependência estará disponível para compilar e testar as classes, mas que é esperado que o JDK ou o container disponibilize-a, e 
+	por esse motivo a biblioteca não é adicionada ao artefato final quando geramos o pacote do nosso projeto.
+	em produção existirá alguém que proverá essa dependencia(desenv)
+- runtime: Significa que a dependência não estará disponível para compilar. Estará disponível apenas no momento da execução e também no classpath dos testes. 
+roda somente em tempo de execução(na linha de comandos não funciona, somente eclipse)
